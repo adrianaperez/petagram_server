@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AplicacionPetegram</string>
+    <string name="nombre">Adriana Pérez</string>
+    <string name="telefono">+56932845561</string>
+    <string name="email">adri.perez.08@gmail.com</string>
+    <string name="pnombre">nombre</string>
+    <string name="ptelefono">telefono</string>
+    <string name="pemail">email</string>
+    <string name="plikes">0</string>
+    <string name="likes">Likes</string>
+    <string name="titulo_paisaje_manana">Paisaje Campo Mañana</string>
+    <string name="action_contact">Contacto</string>
+    <string name="action_about">Acerca de</string>
+    <string name="action_setting">Configurar Cuenta</string>
+    <string name="action_notification">Recibir Notificaciones</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
