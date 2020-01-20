@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.aperez.aplicacionpetagram.adapter.PageAdapter;
 import com.aperez.aplicacionpetagram.adapter.RestApiAdapter;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (toolbar != null){
             setSupportActionBar(toolbar);
+            toolbar.setTitle("Petagram " + ConstantesRestApi.TRANSMITTER_ACCOUNT_NAME);
         }
 
         context = this;
@@ -108,26 +110,30 @@ public class MainActivity extends AppCompatActivity {
 
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         IEndpointsApi endpoints = restApiAdapter.establecerConexionRestApi();
-        Call<UsuarioResponse> usuarioResponseCall = endpoints.registrarUsuario(token, ConstantesRestApi.ACCESS_TOKEN);
+        Call<UsuarioResponse> usuarioResponseCall = endpoints.registrarUsuario(token, ConstantesRestApi.ACCESS_TOKEN, ConstantesRestApi.ACCOUNT);
 
         usuarioResponseCall.enqueue(new Callback<UsuarioResponse>() {
             @Override
             public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
                 UsuarioResponse usuarioResponse = response.body();
-                Log.d("ID_DISPOSITIVO", usuarioResponse.getIdDispositivo());
-                Log.d("ID_USUARIO_INSTAGRAM", usuarioResponse.getIdUsuarioInstagram());
+                if(usuarioResponse != null){
+                    Log.d("ID_DISPOSITIVO", usuarioResponse.getIdDispositivo());
+                    Log.d("ID_USUARIO_INSTAGRAM", usuarioResponse.getIdUsuarioInstagram());
+                    Log.d("NAME_USUARIO_INSTAGRAM", usuarioResponse.getNameUsuarioInstagram());
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Información enviada a Realtime Database Firebase")
-                        .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // FIRE ZE MISSILES!
-                                dialog.dismiss();
-                            }
-                        });
-                // Create the AlertDialog object and return it
-                builder.create();
-                builder.show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Información enviada a Realtime Database Firebase")
+                            .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // FIRE ZE MISSILES!
+                                    dialog.dismiss();
+                                }
+                            });
+                    // Create the AlertDialog object and return it
+                    builder.create();
+                    builder.show();
+                }else
+                    Toast.makeText(context, "Intentar nuevamente, inconvenientes con registro.", Toast.LENGTH_LONG).show();
 
             }
 

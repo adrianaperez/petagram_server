@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AplicacionPetegram</string>
+    <string name="app_name">Petegram</string>
     <string name="nombre">Adriana Pérez</string>
     <string name="telefono">+56932845561</string>
     <string name="email">adri.perez.08@gmail.com</string>
